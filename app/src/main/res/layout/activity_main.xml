@@ -25,6 +25,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Add second movie"
+        android:id="@+id/add_second_movie"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Query DB"
         android:id="@+id/query_button"/>
 </LinearLayout>

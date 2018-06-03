@@ -22,7 +22,8 @@ public class FavoriteDbHelper extends SQLiteOpenHelper {
                 FavoriteMovieEntry.RELEASE_DATE + " TEXT NOT NULL, " +
                 FavoriteMovieEntry.VOTE_AVERAGE + " TEXT NOT NULL, " +
                 FavoriteMovieEntry.OVERVIEW + " TEXT NOT NULL, " +
-                FavoriteMovieEntry.ID + " TEXT NOT NULL);";
+                FavoriteMovieEntry.ID + " TEXT NOT NULL"+
+                ");";
         sqLiteDatabase.execSQL(SQL_CREATE_FAVORITE_LIST);
     }
 
