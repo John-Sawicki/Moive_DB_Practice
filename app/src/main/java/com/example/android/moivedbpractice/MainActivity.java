@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public SQLiteDatabase mDb;
     private Button addButton, queryButton,addSecondMovie, deleteButton;
     String[] movieTwo = {"random url", "inception", "2010", "8.9", "matrix inside a matrix","4568465"};
+    String[] selectionArgs ={"1999"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
     private Cursor getAllMovies(){
         return mDb.query(
                 FavoriteMovieEntry.TABLE_NAME,
-                null,
-                null, //only query movie based on year release, matrix is 1999
-                null,
+                null,null, null,
+                //FavoriteMovieEntry.RELEASE_DATE +"=?",
+               // selectionArgs,
                 null,
                 null,
                 null);
