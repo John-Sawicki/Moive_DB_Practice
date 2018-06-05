@@ -29,27 +29,28 @@ public class MainActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.delete_button);
         Log.d("onCreate", "onCreate");
         Context context = getApplicationContext();
+        ContentValues cv = new ContentValues();
         AddValuesToDB addValues = new AddValuesToDB(mDb, context);
        /*
         if(mDb!=null){
             mDb.delete(FavoriteMovieEntry.TABLE_NAME, null, null);
             Log.d("delete"," in delete if statement");
         }
-*/
+        */
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //TODO add generic static text to query
-                ContentValues cv = new ContentValues();
-                cv.put(FavoriteMovieEntry.POSTER_PATH, "random url");
-                cv.put(FavoriteMovieEntry.ORIGINAL_TITLE, "The Matrix");
-                cv.put(FavoriteMovieEntry.RELEASE_DATE, "1999");
-                cv.put(FavoriteMovieEntry.VOTE_AVERAGE, "9.2");
-                cv.put(FavoriteMovieEntry.OVERVIEW, "The world is a VR simulation");
-                cv.put(FavoriteMovieEntry.ID, "3141592657");
+                ContentValues cv1 = new ContentValues();
+                cv1.put(FavoriteMovieEntry.POSTER_PATH, "random url");
+                cv1.put(FavoriteMovieEntry.ORIGINAL_TITLE, "The Matrix");
+                cv1.put(FavoriteMovieEntry.RELEASE_DATE, "1999");
+                cv1.put(FavoriteMovieEntry.VOTE_AVERAGE, "9.2");
+                cv1.put(FavoriteMovieEntry.OVERVIEW, "The world is a VR simulation");
+                cv1.put(FavoriteMovieEntry.ID, "3141592657");
                 Log.d("query click", "added all content values");
-                mDb.insert(FavoriteMovieEntry.TABLE_NAME, null, cv);
+                mDb.insert(FavoriteMovieEntry.TABLE_NAME, null, cv1);
                 //mDb.close();
 
             }
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 cv.put(FavoriteMovieEntry.OVERVIEW, movieTwo[4]);
                 cv.put(FavoriteMovieEntry.ID, movieTwo[5]);
                 Log.d("query click", "added all second content values");
-                mDb.insert(FavoriteMovieEntry.TABLE_NAME, null, cv);
+               long row =  mDb.insert(FavoriteMovieEntry.TABLE_NAME, null, cv);
                // mDb.close();
 
             }
@@ -83,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 //recyclerViewAdapter = new adapter(context, cursor.getCount());    //only add as many elements as are in the cursor/ db
                 if (cursor.moveToFirst()) {
                     for (int i = 0; i < cursor.getCount(); i++) {
+                        cursor.moveToPosition(i);
                         Log.d("cursor", cursor.getCount() + "");
                         String movieTitle = cursor.getString(cursor.getColumnIndex(FavoriteMovieEntry.ORIGINAL_TITLE));
                         Log.d("query", movieTitle);
+                        cursor.moveToNext();
                     }
 
                 }
